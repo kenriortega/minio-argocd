@@ -8,7 +8,7 @@ secrets:
 ## MinIO Tenant Definition
 tenant:
   # Tenant name
-  name: myminio
+  name: homelabminio
   ## Registry location and Tag to download MinIO Server image
   image:
     repository: quay.io/minio/minio
@@ -29,11 +29,11 @@ tenant:
     ## Servers specifies the number of MinIO Tenant Pods / Servers in this pool.
     ## For standalone mode, supply 1. For distributed mode, supply 4 or more.
     ## Note that the operator does not support upgrading from standalone to distributed mode.
-    - servers: 4
+    - servers: 2
       ## custom name for the pool
       name: pool-0
       ## volumesPerServer specifies the number of volumes attached per MinIO Tenant Pod / Server.
-      volumesPerServer: 4
+      volumesPerServer: 2
       ## size specifies the capacity per volume
       size: 10Gi
       ## storageClass specifies the storage class name to be used for this pool
@@ -75,7 +75,7 @@ tenant:
   subPath: /data
   # pool metrics to be read by Prometheus
   metrics:
-    enabled: false
+    enabled: true
     port: 9000
     protocol: http
   certificate:
@@ -101,7 +101,7 @@ tenant:
     domains: { }
   ## List of bucket names to create during tenant provisioning
   buckets:
-    - name: "cesar"
+    - name: "example"
   ## List of secret names to use for generating MinIO users during tenant provisioning
   users: [ ]
   ## PodManagement policy for MinIO Tenant Pods. Can be "OrderedReady" or "Parallel"
