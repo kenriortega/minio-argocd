@@ -89,7 +89,7 @@ tenant:
     externalCertSecret: [ ]
     ## Enable automatic Kubernetes based certificate generation and signing as explained in
     ## https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster
-    requestAutoCert: true
+    requestAutoCert: false
     ## This field is used only when "requestAutoCert" is set to true. Use this field to set CommonName
     ## for the auto-generated certificate. Internal DNS name for the pod will be used if CommonName is
     ## not provided. DNS name format is *.minio.default.svc.cluster.local
@@ -102,6 +102,7 @@ tenant:
   ## List of bucket names to create during tenant provisioning
   buckets:
     - name: "example"
+    - name: "datalake"
   ## List of secret names to use for generating MinIO users during tenant provisioning
   users: [ ]
   ## PodManagement policy for MinIO Tenant Pods. Can be "OrderedReady" or "Parallel"
@@ -124,7 +125,7 @@ tenant:
   # https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
   serviceAccountName: ""
   # Tenant scrape configuration will be added to prometheus managed by the prometheus-operator.
-  prometheusOperator: false
+  prometheusOperator: true
   # Enable JSON, Anonymous logging for MinIO tenants.
   # Refer https://github.com/minio/operator/blob/master/pkg/apis/minio.min.io/v2/types.go#L303
   # How logs will look:
